@@ -1,0 +1,89 @@
+$font-stack: Roboto;
+
+html,
+form {
+  background-color: rgb(31, 37, 55);
+}
+
+button.round-button {
+  min-width: 30px;
+  max-width: 60px;
+  text-decoration: none;
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  border-style: none;
+  color: white;
+  border-radius: 100%;
+  overflow: none;
+  text-align: center;
+  padding: 0;
+}
+button.round-button:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  padding-top: 100%;
+}
+
+div.faded-text {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 28px;
+  float: right;
+}
+
+input.main-text {
+  color: white;
+  background-color: #293148;
+  font-size: 34px;
+}
+
+input.main-text:focus {
+  outline: none;
+}
+
+
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/utilities";
+
+$utilities: (
+  "viewport-width": (
+    property: width,
+    class: vw,
+    values: (
+      100: 100vw,
+      5: 5vw,
+      10: 10vw,
+      15: 15vw,
+      20: 20vw,
+      25: 25vw,
+    ),
+  ),
+  "viewport-height": (
+    property: height,
+    class: vh,
+    values: (
+      100: 100vh,
+      5: 5vh,
+      10: 10vh,
+      15: 15vh,
+      20: 20vh,
+      25: 25vh,
+      75: 75vh,
+      85: 85vh,
+    ),
+  ),
+);
+
+$theme-colors: (
+  "ac": #b93030,
+  "equals": #518c56,
+  "numbers": #293148,
+  "operations": #315a88,
+  "x-operations": #2b3b54,
+);
+
+$spacer: 5px;
+
+@import "~bootstrap/scss/bootstrap";
