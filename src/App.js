@@ -1,13 +1,15 @@
 import "./App.scss";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { evaluate } from "mathjs";
+import { v4 as uuidv4 } from "uuid";
 
 export default function App() {
   const [currentInput, setCurrentInput] = useState("");
+  const [prevCalculations, setPrevCalculations] = useState([]);
 
+  const prevValuesRef = useRef();
 
   const addToInput = (symbol) => {
-    console.log("🚀 ~ file: App.js ~ line 9 ~ addToInput ~ symbol", symbol)
     setCurrentInput(prevState => prevState + symbol);
   };
 
@@ -20,13 +22,14 @@ export default function App() {
   };
 
   const getAnswer = () => {
-    console.log("🚀 ~ file: App.js ~ line 25 ~ submitHandler ~ currentInput", currentInput)
     const answer = evaluate(currentInput);
     setCurrentInput(answer.toString());
+    setPrevCalculations(prevState => [...prevState, answer.toString()]);
+    prevValuesRef.current.scrollTop = prevValuesRef.current.scrollHeight;
   };
   
   const precentClick = () => {
-    
+
   };
   
   const bracketClick = () => {
@@ -46,7 +49,6 @@ export default function App() {
     console.log("🚀 ~ file: App.js ~ line 34 ~ handleKeyboard ~ e.key", e.key)
     switch (e.key) {
       case "Enter":
-        console.log("🚀 ~ file: App.js ~ line 36 ~ handleKeyboard ~ currentInput", currentInput)
         getAnswer();
         break;
       case "0":
@@ -84,7 +86,13 @@ export default function App() {
     <form>
       <div className="container gap-2 d-flex flex-column justify-content-center align-items-center">
       <div className="row flex-column col-12 col-md-8 col-lg-4">
-        <div className="col previous-value my-1 text-end">Previous Value</div>
+        <div className="col my-1">
+          <ul className="prev-values" ref={prevValuesRef}>
+          {prevCalculations.map((answer) =>
+          <li className="previous-value text-end" key={uuidv4()}>{answer}</li>
+          )}
+          </ul>
+        </div>
         <div className="col border-0 current-input my-1 text-end w-100">&nbsp;{currentInput}</div>
       </div>
       <div className="row gap-1 d-flex col-12 col-md-8 col-lg-4 justify-content-center">

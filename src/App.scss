@@ -6,7 +6,7 @@ html {
 }
 
 form {
-  margin-top: 5vh;
+  //margin-top: 5vh;
   background-color: rgb(31, 37, 55);
 } 
 
@@ -34,6 +34,7 @@ button.round-button {
   text-align: center;
   padding: 0;
 }
+
 button.round-button:before {
   content: "";
   display: inline-block;
@@ -41,12 +42,16 @@ button.round-button:before {
   padding-top: 100%;
 }
 
+ul.prev-values {
+  overflow-y: auto;
+  height: 7vh;
+}
 
-div.previous-value {
+li.previous-value {
   color: rgba(255, 255, 255, 0.5);
   font-size: 28px;
-  float: right;
-  overflow-x: scroll;
+  list-style-type: none;
+
 }
 
 div.current-input {
