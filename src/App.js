@@ -1,9 +1,10 @@
 import "./App.scss";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { evaluate } from "mathjs";
 
 export default function App() {
   const [currentInput, setCurrentInput] = useState("");
+
 
   const addToInput = (symbol) => {
     console.log("🚀 ~ file: App.js ~ line 9 ~ addToInput ~ symbol", symbol)
@@ -29,6 +30,7 @@ export default function App() {
   const bracketClick = () => {};
 
   const handleKeyboard = (e) => {
+    console.log("🚀 ~ file: App.js ~ line 34 ~ handleKeyboard ~ e.key", e.key)
     switch (e.key) {
       case "Enter":
         submitHandler(e);
@@ -52,10 +54,15 @@ export default function App() {
       default:
         break;
     }
-  }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyboard)
+  }, []);
+  
 
   return (
-    <form onSubmit={(e) => submitHandler(e)} onKeyDown={(e) => handleKeyboard(e)}>
+    <form onSubmit={(e) => submitHandler(e)}>
       <div className="container d-flex flex-column justify-content-center align-items-center">
       <div className="row flex-column col-12 col-md-8 col-lg-4">
         <div className="col previous-value my-1 text-end">Previous Value</div>
@@ -63,8 +70,8 @@ export default function App() {
       </div>
       <div className="row gap-1 d-flex col-12 col-md-8 col-lg-4 justify-content-center">
           <div className="row gap-1 d-flex flex-row justify-content-center">
-            <button className="btn btn-x-operations rounded-pill col" type="button">sqrt</button>
-            <button className="btn btn-x-operations rounded-pill col" type="button">pi</button>
+            <button className="btn btn-x-operations rounded-pill col" type="button">√</button>
+            <button className="btn btn-x-operations rounded-pill col" type="button">π</button>
             <button className="btn btn-x-operations rounded-pill col" type="button">^</button>
             <button className="btn btn-x-operations rounded-pill col" type="button">!</button>
           </div>
@@ -73,14 +80,14 @@ export default function App() {
             <button className="btn btn-ac         col rounded-circle" type="button" onClick={allClearClick}>AC</button>
             <button className="btn btn-operations col rounded-circle" type="button" onClick={bracketClick}>()</button>
             <button className="btn btn-operations col rounded-circle" type="button" onClick={precentClick}>%</button>
-            <button className="btn btn-operations col rounded-circle" type="button" onClick={() => addToInput("/")}>/</button>
+            <button className="btn btn-operations col rounded-circle" type="button" onClick={() => addToInput("/")}>÷</button>
           </div>
 
           <div className="row gap-1 d-flex flex-row  justify-content-around">
             <button className="btn btn-numbers col rounded-circle" type="button" onClick={() => addToInput("7")}>7</button>
             <button className="btn btn-numbers col rounded-circle" type="button" onClick={() => addToInput("8")}>8</button>
             <button className="btn btn-numbers col rounded-circle" type="button" onClick={() => addToInput("9")}>9</button>
-            <button className="btn btn-operations col rounded-circle" type="button" onClick={() => addToInput("*")}>*</button>
+            <button className="btn btn-operations col rounded-circle" type="button" onClick={() => addToInput("*")}>×</button>
           </div>
 
           <div className="row gap-1 d-flex flex-row  justify-content-around">
@@ -100,7 +107,7 @@ export default function App() {
           <div className="row gap-1 d-flex flex-row  justify-content-around">
             <button className="btn btn-numbers col rounded-circle" type="button" onClick={() => addToInput("0")}>0</button>
             <button className="btn btn-operations col rounded-circle" type="button" onClick={() => addToInput(".")}>,</button>
-            <button className="btn btn-operations col rounded-circle" type="button" onClick={removeClick}>&lt;-</button>
+            <button className="btn btn-operations col rounded-circle" type="button" onClick={removeClick}>←</button>
             <button className="btn btn-equals col rounded-circle" type="submit">=</button>
           </div>
       </div>
