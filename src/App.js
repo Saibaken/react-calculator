@@ -29,17 +29,22 @@ export default function App() {
   };
   
   const precentClick = () => {
-
+      const lastChar = currentInput.slice(-1);
+      if ("0123456789".includes(lastChar))
+      {
+        addToInput("%")
   };
+};
+
   
   const bracketClick = () => {
     const lastChar = currentInput.slice(-1);
-    if (["+","-","*","/","^"].includes(lastChar)) {
+    if (["+-*/^"].includes(lastChar)) {
       addToInput("(");
     } else {
       if (currentInput.split("(").length === currentInput.split(")").length) {
         addToInput("(");
-      } else {
+      } else if ("0123456789".includes(lastChar)) {
         addToInput(")");
       } 
     }
@@ -67,7 +72,11 @@ export default function App() {
       case "/":
       case "!":
       case "^":
+      case "%":
         addToInput(e.key);
+        break;
+      case "Backspace":
+        removeClick();
         break;
       default:
         break;
