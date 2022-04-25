@@ -4,7 +4,7 @@ html {
   background-color: rgb(31, 37, 55);
   font-size: 24px;
 }
-
+	
 form {
   //margin-top: 5vh;
   background-color: rgb(31, 37, 55);
@@ -44,7 +44,9 @@ button.round-button:before {
 
 ul.prev-values {
   overflow-y: auto;
-  height: 7vh;
+  width: 100%;
+  height: 10vh;
+  margin: 0;
 }
 
 li.previous-value {
