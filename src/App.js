@@ -25,7 +25,6 @@ export default function App() {
     const answer = evaluate(currentInput);
     setCurrentInput(answer.toString());
     setPrevCalculations(prevState => [...prevState, answer.toString()]);
-    prevValuesRef.current.scrollTop = prevValuesRef.current.scrollHeight;
   };
   
   const precentClick = () => {
@@ -82,6 +81,10 @@ export default function App() {
         break;
     }
   };
+
+  useEffect(() => {
+    prevValuesRef.current.scrollTop = prevValuesRef.current.scrollHeight;
+  }, [prevCalculations])
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyboard);
