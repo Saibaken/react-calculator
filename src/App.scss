@@ -47,7 +47,15 @@ ul.prev-values {
   width: 100%;
   height: 10vh;
   margin: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
+
+ul.prev-values::-webkit-scrollbar {
+  display: none;
+}
+
+
 
 li.previous-value {
   color: rgba(255, 255, 255, 0.5);
